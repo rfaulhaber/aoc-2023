@@ -28,7 +28,9 @@
 
           guile
 
-          python3
+          python311
+          python311Packages.pytest
+          python311Packages.python-lsp-server
         ];
       };
     });
