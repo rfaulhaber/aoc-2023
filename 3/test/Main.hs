@@ -8,12 +8,7 @@ main :: IO ()
 main = defaultMain tests
 
 tests :: TestTree
-tests = testGroup "Test cases" [
-  testFindPosition
-  -- testAdjacent,
-  -- testPart1
-  ]
-
+tests = testGroup "Test cases" [testFindPosition, testAdjacent, testPart1]
 
 testFindPosition = testGroup "Test Find Position" [
           testCase "Only numbers" $
@@ -45,4 +40,8 @@ testPart1 = testGroup "Part 1" [
              "......755.\n" ++
              "...$.*....\n" ++
              ".664.598..") @?= 4361
+  , testCase "Part 1 test" $
+    solvePart1 ("..2.3\n" ++
+                ".*...\n" ++
+                "420..") @?= 1
    ]
