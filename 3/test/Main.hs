@@ -8,15 +8,19 @@ main :: IO ()
 main = defaultMain tests
 
 tests :: TestTree
-tests = testGroup "Test cases" [testFindPosition, testAdjacent, testPart1]
+tests = testGroup "Test cases" [testFindPosition, testAdjacent, testPart1, testPart2]
 
 testFindPosition = testGroup "Test Find Position" [
           testCase "Only numbers" $
-          findPositions "467..114.." @?= [((0, 2), "467"), ((5, 7), "114")],
+          findPositionsSpecialSymbols "467..114.." @?= [((0, 2), "467"), ((5, 7), "114")],
           testCase "Symbols" $
-          findPositions "617*......" @?= [((0, 2), "617"), ((3, 3), "*")],
+          findPositionsSpecialSymbols "617*......" @?= [((0, 2), "617"), ((3, 3), "*")],
           testCase "Middle" $
-          findPositions "...164...777..." @?= [((3, 5), "164"), ((9, 11), "777")]
+          findPositionsSpecialSymbols "...164...777..." @?= [((3, 5), "164"), ((9, 11), "777")],
+          testCase "Just stars" $
+          findPositions isStar "617*......" @?= [((0, 2), "617"), ((3, 3), "*")],
+          testCase "Just stars ignore other symbols" $
+          findPositions isStar "...$.*...." @?= [((5, 5), "*")]
         ]
 
 testAdjacent = testGroup "Test Adjacency Calculations" [
@@ -43,5 +47,19 @@ testPart1 = testGroup "Part 1" [
   , testCase "Part 1 test" $
     solvePart1 ("..2.3\n" ++
                 ".*...\n" ++
-                "420..") @?= 1
+                "420..") @?= 422
    ]
+
+testPart2 = testGroup "Part 2" [
+  testCase "Sample" $
+  solvePart2 ("467..114..\n" ++
+             "...*......\n" ++
+             "..35..633.\n" ++
+             "......#...\n" ++
+             "617*......\n" ++
+             ".....+.58.\n" ++
+             "..592.....\n" ++
+             "......755.\n" ++
+             "...$.*....\n" ++
+             ".664.598..") @?= 467835
+                               ]
