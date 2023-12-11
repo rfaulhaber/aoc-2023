@@ -18,8 +18,7 @@
         buildInputs = with pkgs; [
           alejandra
 
-          # racket is currently broken
-          # racket-minimal
+          racket
 
           haskell.compiler.ghc94
           haskellPackages.lsp
@@ -31,6 +30,11 @@
           python311
           python311Packages.pytest
           python311Packages.python-lsp-server
+
+          # ocaml
+          # dune_3
+          # ocamlPackages.ocamlformat_0_26_0
+          # ocamlPackages.lsp
         ];
       };
     });

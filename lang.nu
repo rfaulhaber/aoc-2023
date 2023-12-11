@@ -1,12 +1,14 @@
 let langs = [
-    "Zig"
     "C"
     "C++"
+    "Elixir"
     "Guile"
     "Haskell"
-    "Elixir"
-    "OCaml"
     "Lua"
+    "OCaml"
+    "Racket"
+    "Swift"
+    "Zig"
 ]
 
 $langs | shuffle | first

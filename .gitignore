@@ -29,3 +29,5 @@ cabal.project.local~
 
 __pycache__
 .direnv
+
+_build
