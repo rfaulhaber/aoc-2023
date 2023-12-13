@@ -1,0 +1,25 @@
+* aoc-2023
+:PROPERTIES:
+:CUSTOM_ID: aoc-2023
+:END:
+Advent of Code 2023
+
+** Personal Rules
+:PROPERTIES:
+:CUSTOM_ID: personal-rules
+:END:
+1. Different language every day chosen by =langs.nu= script
+2. Each day is a directory
+3. Each day must read and parse the input as a text file specified from
+   the command line
+4. Each program must print the result to stdout
+5. Each day /should/ have unit tests.
+
+** Notes
+:PROPERTIES:
+:CUSTOM_ID: notes
+:END:
+Day 1 in Haskell is unfinished.
+
+Day 4 was initially started in OCaml, however =opam= is currently broken
+on nixpkgs. Doing day 4 in Racket instead.
