@@ -25,8 +25,6 @@
           haskellPackages.haskell-language-server
           haskellPackages.cabal-install
 
-          guile
-
           python311
           python311Packages.pytest
           python311Packages.python-lsp-server
@@ -35,7 +33,14 @@
           # dune_3
           # ocamlPackages.ocamlformat_0_26_0
           # ocamlPackages.lsp
+
+          luajit
+          luajitPackages.luarocks
         ];
+
+        shellHook = ''
+          alias lua = luajit
+        '';
       };
     });
 }

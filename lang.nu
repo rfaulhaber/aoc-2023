@@ -6,6 +6,7 @@ let langs = [
     "Haskell"
     "Lua"
     "OCaml"
+    "Python"
     "Racket"
     "Swift"
     "Zig"

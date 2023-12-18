@@ -31,3 +31,7 @@ __pycache__
 .direnv
 
 _build
+/luarocks
+/lua
+/lua_modules
+/.luarocks

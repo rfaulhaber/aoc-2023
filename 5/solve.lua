@@ -37,6 +37,16 @@ function parseInput(filename)
 	return mappings
 end
 
+function traversePath(seed, mappings) end
+
+function Solve.getNextValue(value, source, destination, length)
+	if value >= destination and value <= destination + length then
+		return (value - source) + destination
+	end
+
+	return value
+end
+
 function Solve.part1(filename)
 	local input = parseInput(filename)
 
