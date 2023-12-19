@@ -30,27 +30,23 @@ function parseInput(filename)
 			lastTo = to
 		elseif string.match(line, "(%d+) (%d+) (%d+)") then
 			local destination, source, length = string.match(line, "(%d+) (%d+) (%d+)")
-			table.insert(mappings[lastFrom][lastTo], { destination, source, length })
+			local r = range:new(destination, source, length)
+			table.insert(mappings[lastFrom][lastTo], r)
 		end
 	end
 
 	return mappings
 end
 
-function traversePath(seed, mappings) end
-
-function Solve.getNextValue(value, source, destination, length)
-	if value >= destination and value <= destination + length then
-		return (value - source) + destination
-	end
-
-	return value
-end
-
 function Solve.part1(filename)
-	local input = parseInput(filename)
+	local mappings = parseInput(filename)
 
-	for i = 1, #input.path do
+	for i = 1, #mappings.path do
+		local from = mappings.path[i][1]
+		local to = mappings.path[i][2]
+
+		local ranges = m
+
 		print(input.path[i][1] .. " to " .. input.path[i][2])
 	end
 end
