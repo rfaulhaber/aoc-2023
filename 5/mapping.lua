@@ -1,9 +1,7 @@
 Mapping = {}
 
-function Mapping:new(from, to, ranges)
+function Mapping:new(ranges)
 	obj = {
-		from = from,
-		to = to,
 		ranges = ranges,
 	}
 
@@ -11,5 +9,7 @@ function Mapping:new(from, to, ranges)
 
 	return setmetatable(obj, self)
 end
+
+function Mapping:next_value() end
 
 return Mapping

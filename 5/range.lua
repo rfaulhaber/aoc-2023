@@ -3,10 +3,10 @@
 
 local Range = {}
 
-function Range:new(start, length)
+function Range:new(destination, source, length)
 	local obj = {
-		start = start,
-		finish = start + length,
+		source = source,
+		destination = destination,
 		length = length,
 	}
 
@@ -16,7 +16,16 @@ function Range:new(start, length)
 end
 
 function Range:between(value)
-	return value >= self.start and value < self.finish
+	local finish = self.source + self.length
+	return value >= self.source and value < finish
+end
+
+function Range:nextValue(value)
+	if self:between(value) then
+		return (value - self.source) + self.destination
+	else
+		return value
+	end
 end
 
 return Range
