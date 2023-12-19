@@ -28,4 +28,8 @@ function Range:nextValue(value)
 	end
 end
 
+function Range:offset()
+	return self.destination - self.source
+end
+
 return Range

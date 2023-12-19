@@ -70,7 +70,48 @@ function Solve.part1(filename)
 end
 
 function Solve.part2(filename)
-	print("filename for part 2: " .. filename)
+	local mappings = parseInput(filename)
+
+	local locations = {}
+
+	local seedPairs = Solve.resolveSeeds(mappings.seeds)
+
+	for _, seed in ipairs(seedPairs) do
+		local start = seed.start
+		local length = seed.length
+
+		for i = 1, #mappings.path do
+			local from = mappings.path[i].from
+			local to = mappings.path[i].to
+
+			local ranges = mappings[from][to]
+
+			for _, r in ipairs(ranges) do
+				if r:between(start) then
+					start = start + r:offset()
+					length = length + r:offset()
+					break
+				end
+			end
+
+			table.insert(locations, start)
+		end
+	end
+
+	return math.min(unpack(locations))
+end
+
+function Solve.resolveSeeds(seeds)
+	local seedPairs = {}
+
+	for i = 1, #seeds, 2 do
+		local start = seeds[i]
+		local length = seeds[i + 1]
+
+		table.insert(seedPairs, { start = start, length = length })
+	end
+
+	return seedPairs
 end
 
 return Solve

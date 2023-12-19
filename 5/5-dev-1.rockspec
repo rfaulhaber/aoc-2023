@@ -11,6 +11,7 @@ build = {
    type = "builtin",
    modules = {
            main = "main.lua",
-           solve = "solve.lua"
+           solve = "solve.lua",
+           range = "range.lua"
    }
 }
