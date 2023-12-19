@@ -1,5 +1,8 @@
 local io = require("io")
 local string = require("string")
+local range = require("range")
+
+local unpack = table.unpack or unpack
 
 local Solve = {}
 
@@ -16,7 +19,7 @@ function parseInput(filename)
 	}
 
 	for s in string.gmatch(firstLine, "%d+") do
-		table.insert(mappings.seeds, s)
+		table.insert(mappings.seeds, tonumber(s))
 	end
 
 	local lastFrom, lastTo
@@ -25,12 +28,12 @@ function parseInput(filename)
 		if string.match(line, "(%w+)%-to%-(%w+) map:") then
 			local from, to = string.match(line, "(%w+)%-to%-(%w+) map:")
 			mappings[from] = { [to] = {} }
-			table.insert(mappings.path, { from, to })
+			table.insert(mappings.path, { from = from, to = to })
 			lastFrom = from
 			lastTo = to
 		elseif string.match(line, "(%d+) (%d+) (%d+)") then
 			local destination, source, length = string.match(line, "(%d+) (%d+) (%d+)")
-			local r = range:new(destination, source, length)
+			local r = range:new(tonumber(destination), tonumber(source), tonumber(length))
 			table.insert(mappings[lastFrom][lastTo], r)
 		end
 	end
@@ -41,14 +44,29 @@ end
 function Solve.part1(filename)
 	local mappings = parseInput(filename)
 
-	for i = 1, #mappings.path do
-		local from = mappings.path[i][1]
-		local to = mappings.path[i][2]
+	local locations = {}
 
-		local ranges = m
+	for i, seed in ipairs(mappings.seeds) do
+		local value = seed
 
-		print(input.path[i][1] .. " to " .. input.path[i][2])
+		for i = 1, #mappings.path do
+			local from = mappings.path[i].from
+			local to = mappings.path[i].to
+
+			local ranges = mappings[from][to]
+
+			for _, r in ipairs(ranges) do
+				if r:between(value) then
+					value = r:nextValue(value)
+					break
+				end
+			end
+		end
+
+		table.insert(locations, value)
 	end
+
+	return math.min(unpack(locations))
 end
 
 function Solve.part2(filename)

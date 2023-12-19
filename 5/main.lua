@@ -1,7 +1,10 @@
 local solve = require("solve")
 local os = require("os")
+local io = require("io")
 
-local _, part, filename = unpack(arg)
+local unpack = table.unpack or unpack
+
+local part, filename = unpack(arg)
 
 if part == nil then
 	print("Part is required")
